@@ -18,11 +18,11 @@ router.post("/createURL", async (req,res) => {
       //   for ( let i = 0; i < length; i++ ) {
       //     result += longURL.charAt(Math.floor(Math.random() * charactersLength));
       //   }
-
       //   return result;
       //   }
       // const id = generateShortURL(7);
       //console.log(shortURL);
+      
       const id = nanoid(7);
       const url = await getURL({urlID:id});
       if(url){

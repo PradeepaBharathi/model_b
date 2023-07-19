@@ -29,7 +29,7 @@ app.get('/:urlID', async(req, res)=>{
        const url = await getURL({urlID: req.params.urlID})
        if(url){
            console.log("redirecting");
-           return res.redirect(url.longURL)
+           return res.status(200).send(url.longURL)
        }
        else{
            return res.status(404).json('No URL Found')
