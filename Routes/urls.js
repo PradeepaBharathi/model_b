@@ -1,34 +1,33 @@
 import express from "express";
 import { addURL, getURL, getAllURL, urlDayCount, urlMonthCount, updateCount } from "../Controllers/urls.js";
-import { nanoid } from 'nanoid' 
+
 
 const router = express.Router();  
 
 router.post("/createURL", async (req,res) => { 
-    try{
-      console.log("creating url");
-      console.log("get url id ");  
-      // const id = Math.random().toString(36).substring(2,9);
+          try{
+          function generateShortId(length) {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
+        const charactersLength = characters.length;
+        
+        for (let i = 0; i < length; i++) {
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
 
-      //using loop to shorten a long url
-      // const longURL =req.body.longURL;
-      //   function generateShortURL(length) {
-      //   let result = ' ';
-      //   const charactersLength = longURL.length;
-      //   for ( let i = 0; i < length; i++ ) {
-      //     result += longURL.charAt(Math.floor(Math.random() * charactersLength));
-      //   }
-      //   return result;
-      //   }
-      // const id = generateShortURL(7);
-      //console.log(shortURL);
-      
-      const id = nanoid(7);
-      const url = await getURL({urlID:id});
-      if(url){
-        return res.status(404).json({message:"Try again"})
+        return result;
       }
-      const shortURL = `/${id}`
+
+      const id = generateShortId(7); // Generate a custom short ID
+      console.log('Generated ID:', id);
+            // const url = await getURL({ urlID: id });
+            // console.log(url)
+            // if(!url){
+            //   return res.status(404).json({message:"Try again"})
+            // }
+            const shortURL = '/' + id;
+          
+     
       const data = {...req.body, shortURL:shortURL, urlID:id, clicked:0}
       const result = await addURL(data) 
       if(!result.acknowledged){

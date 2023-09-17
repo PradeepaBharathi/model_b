@@ -7,9 +7,9 @@ import nodemailer from "nodemailer";
 const router = express.Router();
 
 const transporter = nodemailer.createTransport({
-  service: 'outlook',
+  service: 'gmail',
   auth: {
-    user: 'resetpasswordalert@outlook.com',
+    user: 'resetpass634@gmail.com',
     pass: process.env.PASSWORD
   }
 });
@@ -73,7 +73,7 @@ router.post("/signup", async (req, res) => {
         //const link = `http://localhost:3000/activate/${hashedUser._id}?activateToken=${token}`;
         const link = `https://urlshortener-react.netlify.app/activate/${hashedUser._id}?activateToken=${token}`;
         const mailOptions = {
-          from: 'resetpasswordalert@outlook.com',
+          from: 'resetpass634@gmail.com',
           to: hashedUser.email,
           subject: 'Account Activation link sent',
           text: `Click on the below link to activate your account. This link is valid for 48 hours after which link will be invalid. ${link}`
@@ -125,7 +125,7 @@ router.post("/signup", async (req, res) => {
         // const link = `http://localhost:3000/activate/${user._id}?activateToken=${token}`;
         const link = `https://urlshortener-react.netlify.app/activate/${user._id}?activateToken=${token}`;
         const mailOptions = {
-          from: 'resetpasswordalert@outlook.com',
+          from: 'resetpass634@gmail.com',
           to: user.email,
           subject: 'Account Activation link sent',
           text: `Click on the below link to activate your account. This link is valid for 48 hours after which link will be invalid. ${link}`
@@ -213,7 +213,7 @@ router.post("/forgot-password", async(req, res) => {
         //const link = `http://localhost:3000/authorize/?id=${user._id}&token=${token}`;
         const link = `https://urlshortener-react.netlify.app/authorize/?id=${user._id}&token=${token}`;
         const mailOptions = {
-          from: 'resetpasswordalert@outlook.com',
+          from: 'resetpass634@gmail.com',
           to: user.email,
           subject: 'Password reset link sent',
           text: `Click on the below link to reset your password. This password reset link is valid for 10 minutes after which link will be invalid. ${link}`
